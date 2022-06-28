@@ -1,5 +1,6 @@
 class MembersController < ApplicationController
   before_action :set_member, only: %i[ show edit update destroy ]
+  authorize_resource
 
   # GET /members or /members.json
   def index
@@ -58,13 +59,13 @@ class MembersController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_member
-      @member = Member.find(params[:id])
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_member
+    @member = Member.find(params[:id])
+  end
 
-    # Only allow a list of trusted parameters through.
-    def member_params
-      params.require(:member).permit(:user_id, :team_id)
-    end
+  # Only allow a list of trusted parameters through.
+  def member_params
+    params.require(:member).permit(:user_id, :team_id)
+  end
 end

@@ -48,6 +48,7 @@ gem "sassc-rails"
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
 # gem "image_processing", "~> 1.2"
 
+gem 'ros-apartment', require: 'apartment'
 
 gem "devise", "~> 4.8"
 
@@ -76,3 +77,12 @@ group :test do
   gem "webdrivers"
 end
 
+
+
+gem "annotate", "~> 3.2"
+
+gem "pundit", "~> 2.2"
+
+gem "cancancan", "~> 3.4"
+
+gem "rolify", "~> 6.0"

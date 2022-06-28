@@ -1,7 +1,8 @@
-<h1>New team</h1>
 
-<%= render "form", team: @team %>
-
+<%= turbo_frame_tag :new_team do %>
+  <h1>New team</h1>
+  <%= render "form", team: @team %>
+<% end %>
 <br>
 
 <div>

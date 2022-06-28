@@ -75,4 +75,7 @@ Rails.application.configure do
 
   # Uncomment if you wish to allow Action Cable access from any origin.
   # config.action_cable.disable_request_forgery_protection = true
+  config.hosts << /[a-z0-9]+\.lvh\.me/
+  config.hosts << /lvh\.me/
+  config.session_store :cookie_store, key: '_hits_and_misses', domain: ".lvh.me"
 end

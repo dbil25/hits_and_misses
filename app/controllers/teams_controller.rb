@@ -1,9 +1,10 @@
 class TeamsController < ApplicationController
   before_action :set_team, only: %i[ show edit update destroy ]
+  authorize_resource
 
   # GET /teams or /teams.json
   def index
-    @teams = Team.all
+    @teams =Team.all
   end
 
   # GET /teams/1 or /teams/1.json
@@ -22,9 +23,11 @@ class TeamsController < ApplicationController
   # POST /teams or /teams.json
   def create
     @team = Team.new(team_params)
+    @team.tenant_name = "team_#{@team.name}"
+    @member = @team.members.new(user: current_user)
 
     respond_to do |format|
-      if @team.save
+      if @team.save && @member.save
         format.html { redirect_to team_url(@team), notice: "Team was successfully created." }
         format.json { render :show, status: :created, location: @team }
       else
