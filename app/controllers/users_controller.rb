@@ -10,6 +10,10 @@ class UsersController < ApplicationController
   end
 
   def show
+    if Apartment::Tenant.current != "public"
+      redirect_to team_path
+      return
+    end
     @teams = @user.teams
   end
 

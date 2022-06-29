@@ -1,0 +1,11 @@
+
+<div id="<%= dom_id meeting %>">
+
+  <%= link_to meeting_path(meeting) do %>
+    <%= meeting.name %>
+  <% end %>
+
+  <p>
+    <%= meeting.date %>
+  </p>
+</div>

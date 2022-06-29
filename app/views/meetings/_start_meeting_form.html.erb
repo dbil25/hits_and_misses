@@ -1,0 +1,5 @@
+<%= form_with model: meeting, url: meeting_start_path(meeting), method: :post do |form| %>
+  <%= form.label "duration (minutes)" %>
+  <%= form.number_field :duration %>
+  <%= form.submit "start meeting" %>
+<% end %>

@@ -1,7 +1,16 @@
 <div id="<%= dom_id member %>">
-  <p>
-    <strong>User:</strong>
     <%= member.user.username %>
-  </p>
-
+    <% if member.has_cached_role? :admin %>
+      <div class="text-bold">
+        admin
+      </div>
+    <% end %>
+    <% if member.status == "pending" %>
+      <div class="text-bold">
+        admin
+      </div>
+      <% if can?(:accept_membership, member) %>
+        <%= link_to member_accept_membership_path(member) %>
+      <% end %>
+    <% end %>
 </div>

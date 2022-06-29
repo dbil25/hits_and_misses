@@ -1,0 +1,16 @@
+<div data-controller="emoji-picker" class="popper-wrapper" data-emoji-picker-show-value="false">
+  <button data-emoji-picker-target="button" data-action="click->emoji-picker#toggle">
+    <%= heroicon("emoji-happy", variant: :outline, options: { class: "mr-3 flex-shrink-0 h-5 w-5 text-gray-400 group-hover:text-gray-700" }) %>
+  </button>
+  <div data-emoji-picker-target="emojiRoot" data-action="click->emoji-picker#toggle" class="popper popper-dark">
+    <emoji-picker></emoji-picker>
+    <%= tag.div class: "arrow", data: {
+          emoji_picker_target: "arrow",
+          popper_arrow: true
+        } %>
+  </div>
+  <%= form_with model: Reaction.new, url: comment_reactions_path(comment_id: comment.id), method: :post do |f| %>
+    <%= f.hidden_field :content, data: { emoji_picker_target: "formInput" } %>
+    <%= f.submit :content, class: "hidden", data: { emoji_picker_target: "formSubmit" } %>
+  <% end %>
+</div>

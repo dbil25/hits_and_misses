@@ -1,0 +1,26 @@
+
+<%= turbo_stream_from dom_id(@meeting) + Apartment::Tenant.current %>
+<%= turbo_frame_tag @meeting do %>
+  <%= render @meeting %>
+  <% if @meeting.not_started? %>
+    <% if can?(:start, @meeting) %>
+      <%= render partial: "start_meeting_form", locals: { meeting: @meeting } %>
+    <% else %>
+      Wainting for host to start the meeting
+    <% end %>
+  <% else %>
+    <%= tag.div data: {
+      controller: "timer",
+      timer_end_at_value: (@meeting.started_at + @meeting.duration_seconds.seconds).iso8601,
+    } %>
+  <% end %>
+  <%= render partial: "hits_and_misses", locals: { hits: @hits, misses: @misses } %>
+<% end %>
+
+
+<div>
+  <%= link_to "Edit this meeting", edit_meeting_path(@meeting) %> |
+  <%= link_to "Back to meetings", meetings_path %>
+
+  <%= button_to "Destroy this meeting", @meeting, method: :delete %>
+</div>

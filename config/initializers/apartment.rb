@@ -4,9 +4,9 @@
 # Apartment can support many different "Elevators" that can take care of this routing to your data.
 # Require whichever Elevator you're using below or none if you have a custom one.
 #
- require 'apartment/elevators/generic'
+# require 'apartment/elevators/generic'
 # require 'apartment/elevators/domain'
-# require 'apartment/elevators/subdomain'
+require 'apartment/elevators/subdomain'
 # require 'apartment/elevators/first_subdomain'
 # require 'apartment/elevators/host'
 
@@ -17,7 +17,7 @@ Apartment.configure do |config|
   # Add any models that you do not want to be multi-tenanted, but remain in the global (public) namespace.
   # A typical example would be a Customer or Tenant model that stores each Tenant's information.
   #
-  config.excluded_models = %w{User Team Member}
+  config.excluded_models = %w{User Team Member Role}
 
   # In order to migrate all of your Tenants you need to provide a list of Tenant names to Apartment.
   # You can make this dynamic by providing a Proc object to be called on migrations.
@@ -106,13 +106,11 @@ end
 
 # Setup a custom Tenant switching middleware. The Proc should return the name of the Tenant that
 # you want to switch to.
-Rails.application.config.middleware.use Apartment::Elevators::Generic, lambda { |request|
-  name = Team.find_by(name: request.host.split('.').first)&.tenant_name
-  puts "NAME!!!!: #{name}"
-  name
-}
+# Rails.application.config.middleware.use Apartment::Elevators::Generic, lambda { |request|
+#   Team.find_by(name: request.host.split('.').first)&.tenant_name
+# }
 
 # Rails.application.config.middleware.use Apartment::Elevators::Domain
-# Rails.application.config.middleware.use Apartment::Elevators::Subdomain
+Rails.application.config.middleware.use Apartment::Elevators::Subdomain
 # Rails.application.config.middleware.use Apartment::Elevators::FirstSubdomain
 # Rails.application.config.middleware.use Apartment::Elevators::Host

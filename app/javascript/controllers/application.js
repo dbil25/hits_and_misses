@@ -1,4 +1,5 @@
 import { Application } from "@hotwired/stimulus"
+import 'emoji-picker-element'
 
 const application = Application.start()
 

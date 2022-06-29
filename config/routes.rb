@@ -1,6 +1,16 @@
 Rails.application.routes.draw do
-  resources :members
-  resources :teams, except: [:index]
+  resources :comments do
+    resources :reactions
+  end
+  resources :meetings do
+    post :start
+  end
+  resources :members do
+    get :accept_membership
+  end
+  resource :team, except: [:index] do
+    post :request_invite
+  end
   devise_for :users
 
   resources :users, except: [:new, :create] do

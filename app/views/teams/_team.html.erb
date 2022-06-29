@@ -1,3 +1,5 @@
 <div id="<%= dom_id team %>">
-  <%= team.name %>
+  <%= link_to team_url(subdomain: team.name) do %>
+    <%= team.name %>
+  <% end %>
 </div>

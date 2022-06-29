@@ -1,0 +1,9 @@
+<%= form_with(model: Team.new, url: request_invite_team_path) do |form| %>
+
+  <%= form.label "Join existing team" %>
+  <%= form.text_field :name %>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>

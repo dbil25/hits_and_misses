@@ -1,0 +1,4 @@
+<% target_frame = @comment.is_a?(Comments::Hit) ? "hit_list" : "miss_list" %>
+<%= turbo_stream.append(target_frame) do %>
+  <%= render @comment %>
+<% end %>

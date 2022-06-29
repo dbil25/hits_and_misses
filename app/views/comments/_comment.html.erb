@@ -1,0 +1,14 @@
+<div id="<%= dom_id comment %>">
+  <div class="text-sm text-slate-400">
+    <%= comment.author.user.username %>
+  </div>
+
+  <p>
+    <%= comment.body %>
+  </p>
+  <%= turbo_frame_tag dom_id(comment) + "_reactions", class: "flex" do %>
+    <%= render comment.reactions %>
+  <% end %>
+
+  <%= render partial: "reactions/reaction_form", locals: {comment: comment}%>
+</div>

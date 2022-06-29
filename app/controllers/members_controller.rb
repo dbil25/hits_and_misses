@@ -1,5 +1,5 @@
 class MembersController < ApplicationController
-  before_action :set_member, only: %i[ show edit update destroy ]
+  before_action :set_member, only: %i[ show edit update destroy accept_membership ]
   authorize_resource
 
   # GET /members or /members.json
@@ -18,6 +18,11 @@ class MembersController < ApplicationController
 
   # GET /members/1/edit
   def edit
+  end
+
+  def accept_membership
+    @member.update(status: nil)
+    redirect_to team_path
   end
 
   # POST /members or /members.json

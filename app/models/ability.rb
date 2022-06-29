@@ -44,11 +44,14 @@ class Ability
     team = Team.find_by(tenant_name: Apartment::Tenant.current)
     member = Member.find_by(user: user, team: team)
     return unless member.present?
+    return if member.status == "pending"
 
     can :read, Team, itself: team
 
     if member.has_role?(:admin)
       can [:update, :destroy], Team, itself: team
+      can [:manage, :start], Meeting
+      can [:accept_membership, :destroy], Member, team: team
     end
   end
 end

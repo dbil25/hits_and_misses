@@ -1,12 +1,11 @@
-<p style="color: green"><%= notice %></p>
-
-<%= render @team %>
-
-<%= render @team.members %>
+<h1 class="text-xl"><%= @team.name %> </h1>
 
 <div>
-  <%= link_to "Edit this team", edit_team_path(@team) %> |
-  <%= link_to "Back to teams", teams_path %>
+<%= render @pending_members %>
+<%= render @admins_members %>
+<%= render @members %>
+</div>
 
-  <%= button_to "Destroy this team", @team, method: :delete %>
+<div>
+<%= turbo_frame_tag :meetings, src: meetings_path, target: "_top" %>
 </div>

@@ -1,0 +1,12 @@
+<%= turbo_frame_tag :meetings, target: "_top" do %>
+  <h1>Meetings</h1>
+
+  <%= turbo_frame_tag :new_meeting, src: new_meeting_path %>
+
+  <div id="meetings">
+    <% @meetings.each do |meeting| %>
+      <%= render meeting %>
+    <% end %>
+  </div>
+
+<% end %>

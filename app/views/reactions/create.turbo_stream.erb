@@ -1,0 +1,3 @@
+<%= turbo_stream.append(dom_id(@reaction.comment) + "_reactions") do %>
+  <%= render @reaction %>
+<% end %>

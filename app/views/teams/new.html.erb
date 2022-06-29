@@ -1,10 +1,6 @@
 
-<%= turbo_frame_tag :new_team do %>
+<%= turbo_frame_tag :new_team, target: "_top" do %>
   <h1>New team</h1>
   <%= render "form", team: @team %>
 <% end %>
 <br>
-
-<div>
-  <%= link_to "Back to teams", teams_path %>
-</div>
