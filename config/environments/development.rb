@@ -79,5 +79,5 @@ Rails.application.configure do
   config.hosts << /lvh\.me/
   config.hosts << /[a-z0-9]+\.be31-38-141-143-30.ngrok.io/
   config.hosts << /be31-38-141-143-30.ngrok.io/
-  config.session_store :cookie_store, key: '_hits_and_misses', domain: "lvh.me"
+  config.session_store :cookie_store, key: '_hits_and_misses', domain: :all
 end

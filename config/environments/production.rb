@@ -90,4 +90,9 @@ Rails.application.configure do
 
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
+
+
+  config.session_store :cookie_store, key: '_hits_and_misses', domain: :all, tld_length: 2
+
+  config.action_dispatch.tld_length = Integer(ENV['TLD_LENGTH'] || 1)
 end
