@@ -12,16 +12,16 @@
   <% end %>
 
   <div>
-    <%= form.label :date, style: "display: block" %>
-    <%= form.date_field :date %>
+    <%= form.hidden_field :date %>
   </div>
 
-  <div>
-    <%= form.label :name, style: "display: block" %>
-    <%= form.text_field :name %>
-  </div>
+  <div class="flex flex-col items-center space-y-3">
+    <%= form.text_field :name,
+      class:"form-control block w-full px-4 py-2 text-xl font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none",
+      placeholder:"new meeting name" %>
 
-  <div>
-    <%= form.submit %>
+    <div>
+      <%= form.submit "Create hit and miss! 💩", class: "inline-block px-7 py-3 bg-gradient-to-r from-orange-300 via-orange-500 to-red-600 text-white font-medium text-sm leading-snug rounded shadow-md hover:from-orange-200 hover:via-orange-400 hover:to-red-500 hover:shadow-lg active:bg-orange-500 active:shadow-lg transition duration-150 ease-in-out w-full" %>
+    </div>
   </div>
 <% end %>

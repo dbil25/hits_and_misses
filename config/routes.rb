@@ -1,8 +1,8 @@
 Rails.application.routes.draw do
-  resources :comments do
-    resources :reactions
+  resources :comments, only: [:create, :update, :destroy, :edit] do
+    resources :reactions, only: [:create]
   end
-  resources :meetings do
+  resources :meetings, except: [:index] do
     post :start
   end
   resources :members do

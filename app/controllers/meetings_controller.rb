@@ -1,11 +1,6 @@
 class MeetingsController < ApplicationController
   before_action :set_meeting, only: %i[ show edit update destroy start ]
 
-  # GET /meetings
-  def index
-    @meetings = Meeting.all
-  end
-
   # GET /meetings/1
   def show
     @hits = Comments::Hit.where(meeting: @meeting)
@@ -26,7 +21,7 @@ class MeetingsController < ApplicationController
     @meeting = Meeting.new(meeting_params)
 
     if @meeting.save
-      redirect_to @meeting, notice: "Meeting was successfully created."
+      redirect_to team_path
     else
       render :new, status: :unprocessable_entity
     end

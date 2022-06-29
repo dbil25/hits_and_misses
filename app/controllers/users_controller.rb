@@ -14,7 +14,7 @@ class UsersController < ApplicationController
       redirect_to team_path
       return
     end
-    @teams = @user.teams
+    @teams = @user.members.where(status: nil).extract_associated(:team)
   end
 
   def edit

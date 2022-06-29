@@ -8,6 +8,8 @@ class TeamsController < ApplicationController
     @pending_members = members.select{ |m| m.status == "pending" }
     @admins_members = members.select{ |m| m.has_cached_role? :admin }
     @members = members - @pending_members - @admins_members
+
+    @meetings = Meeting.order(date: :desc)
   end
 
   # GET /teams/new

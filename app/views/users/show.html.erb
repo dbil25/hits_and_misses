@@ -1,3 +1,13 @@
-<%= render @teams %>
-<%= turbo_frame_tag :new_team, src: new_team_path, target: "_top" %>
-<%= render partial: "teams/request_invite" %>
+<div class="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
+  <div class="text-xl mb-2">my teams:</div>
+  <ul role="list" class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+    <%= render @teams %>
+  </ul>
+
+  <div class="flex mt-12">
+    <%= turbo_frame_tag :new_team, src: new_team_path, target: "_top" %>
+    <%= render partial: "teams/request_invite" %>
+  </div>
+</div>
+
+

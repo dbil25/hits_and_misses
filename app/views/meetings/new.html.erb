@@ -1,5 +1,5 @@
-<%= turbo_frame_tag :new_meeting do%>
-  <h1>New meeting</h1>
-
-  <%= render "form", meeting: @meeting %>
+<%= turbo_frame_tag :new_meeting do %>
+  <div class="bg-white rounded-lg drop-shadow mb-2 p-4">
+    <%= render "form", meeting: @meeting %>
+  </div>
 <% end %>

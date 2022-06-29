@@ -1,14 +1,18 @@
-<div id="<%= dom_id comment %>">
+<div id="<%= dom_id comment %>" class="p-2 bg-white rounded-lg border-2">
   <div class="text-sm text-slate-400">
-    <%= comment.author.user.username %>
+    <%= comment.author.user.username %> said:
   </div>
 
-  <p>
-    <%= comment.body %>
-  </p>
-  <%= turbo_frame_tag dom_id(comment) + "_reactions", class: "flex" do %>
-    <%= render comment.reactions %>
-  <% end %>
+  <div class="border-b-2">
+    <p class="prose">
+      <%= comment.body %>
+    </p>
+  </div>
+  <div class="flex justify-between pt-1">
+    <%= turbo_frame_tag dom_id(comment) + "_reactions", class: "flex" do %>
+      <%= render comment.reactions %>
+    <% end %>
 
-  <%= render partial: "reactions/reaction_form", locals: {comment: comment}%>
+    <%= render partial: "reactions/reaction_form", locals: {comment: comment}%>
+  </div>
 </div>

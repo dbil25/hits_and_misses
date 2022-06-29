@@ -1,11 +1,20 @@
 
-<div id="<%= dom_id meeting %>">
-
+<li>
   <%= link_to meeting_path(meeting) do %>
-    <%= meeting.name %>
+    <div class="p-4 flex justify-between">
+      <div class="mx-3">
+        <p class="text-sm  font-medium text-blue-700">
+          <%= meeting.name %>
+        </p>
+        <p class="text-sm text-gray-500"><%= l(meeting.date, format: :long) %></p>
+      </div>
+      <div>
+        <% if meeting.started_at? && (meeting.started_at + meeting.duration_seconds&.seconds) < Time.now %>
+          <div class="bg-orange-400 rounded text-white font-semibold p-1">
+            ended
+          </div>
+        <% end %>
+      </div>
+    </div>
   <% end %>
-
-  <p>
-    <%= meeting.date %>
-  </p>
-</div>
+</li>

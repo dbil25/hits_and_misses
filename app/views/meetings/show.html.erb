@@ -1,26 +1,28 @@
 
 <%= turbo_stream_from dom_id(@meeting) + Apartment::Tenant.current %>
 <%= turbo_frame_tag @meeting do %>
-  <%= render @meeting %>
-  <% if @meeting.not_started? %>
-    <% if can?(:start, @meeting) %>
-      <%= render partial: "start_meeting_form", locals: { meeting: @meeting } %>
+  <div class="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
+    <h1 class="text-4xl mb-5 font-bold text-slate-400"><%= @meeting.name %> </h1>
+
+    <% if @meeting.not_started? %>
+      <div class="mt-32">
+        <% if can?(:start, @meeting) %>
+          <%= render partial: "start_meeting_form", locals: { meeting: @meeting } %>
+        <% else %>
+          Wainting for host to start the meeting...
+        <% end %>
+      </div>
     <% else %>
-      Wainting for host to start the meeting
+      <%= tag.div class: "font-mono text-3xl font-semibold",
+      data: {
+        controller: "timer",
+        timer_end_at_value: (@meeting.started_at + @meeting.duration_seconds.seconds).iso8601,
+      } do %>
+        --:--
+      <% end %>
+      <%= render partial: "meetings/hits_and_misses", locals: { meeting: @meeting, hits: @hits, misses: @misses } %>
     <% end %>
-  <% else %>
-    <%= tag.div data: {
-      controller: "timer",
-      timer_end_at_value: (@meeting.started_at + @meeting.duration_seconds.seconds).iso8601,
-    } %>
-  <% end %>
-  <%= render partial: "hits_and_misses", locals: { hits: @hits, misses: @misses } %>
+  </div>
 <% end %>
 
 
-<div>
-  <%= link_to "Edit this meeting", edit_meeting_path(@meeting) %> |
-  <%= link_to "Back to meetings", meetings_path %>
-
-  <%= button_to "Destroy this meeting", @meeting, method: :delete %>
-</div>

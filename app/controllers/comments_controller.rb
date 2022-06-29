@@ -1,15 +1,6 @@
 class CommentsController < ApplicationController
   before_action :set_comment, only: %i[ show edit update destroy ]
 
-  # GET /comments
-  def index
-    @comments = Comment.all
-  end
-
-  # GET /comments/1
-  def show
-  end
-
   # GET /comments/new
   def new
     @comment = Comment.new
@@ -21,11 +12,13 @@ class CommentsController < ApplicationController
 
   # POST /comments
   def create
-    puts params
     @comment = Comment.new(comment_params.merge(author: current_member))
-    @comment.save
-
-    Turbo::StreamsChannel.broadcast_stream_to(dom_id(@comment.meeting) + Apartment::Tenant.current, content: render(template: "comments/create", format: :turbo_stream))
+    if @comment.save
+      Turbo::StreamsChannel.broadcast_stream_to(dom_id(@comment.meeting) + Apartment::Tenant.current, content: render_to_string(template: "comments/create", format: :turbo_stream))
+      if @comment.body.to_plain_text == "never gonna give you up"
+        Turbo::StreamsChannel.broadcast_stream_to(dom_id(@comment.meeting) + Apartment::Tenant.current, content: render_to_string(template: "comments/rick_roll", format: :turbo_stream))
+      end
+    end
     head 200
   end
 

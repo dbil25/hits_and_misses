@@ -1,16 +1,36 @@
-<div id="<%= dom_id member %>">
-    <%= member.user.username %>
-    <% if member.has_cached_role? :admin %>
-      <div class="text-bold">
+<li class="p-4 flex justify-between">
+  <div class="mx-3">
+    <p class="text-sm font-medium text-gray-900">
+      <%= member.user.username %>
+      <% if member.status == "pending" %>
+        <span class="font-bold text-sm m-1 p-1 bg-slate-600 text-white rounded-lg">
+          pending
+        </span>
+      <% end %>
+      <% if member.has_cached_role? :admin %>
+      <span class="font-bold text-sm m-1 p-1 bg-orange-600 text-white rounded-lg">
         admin
-      </div>
+      </span>
     <% end %>
-    <% if member.status == "pending" %>
-      <div class="text-bold">
-        admin
-      </div>
-      <% if can?(:accept_membership, member) %>
-        <%= link_to member_accept_membership_path(member) %>
+    </p>
+    <p class="text-sm text-gray-500"><%= member.user.email %></p>
+  </div>
+  <div>
+    <% if member.status == "pending" && can?(:accept_membership, member) %>
+      <%= link_to member_accept_membership_path(member) do %>
+        <div class="font-bold text-sm m-1 py-1 pl-1 pr-2 bg-green-600 text-white rounded-lg">
+          <%= heroicon(:check, variant: :outline, options: { class: "inline-block h-5 w-5"}) %>
+          accept
+        </div>
       <% end %>
     <% end %>
-</div>
+    <% if can?(:destroy, member) %>
+      <%= button_to member_path(member), method: :delete do %>
+        <div class="font-bold text-sm m-1 py-1 pl-1 pr-2 bg-red-600 text-white rounded-lg">
+          <%= heroicon(:x, variant: :outline, options: { class: "inline-block h-5 w-5"}) %>
+          delete
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+</li>

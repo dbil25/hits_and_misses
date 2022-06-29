@@ -77,5 +77,7 @@ Rails.application.configure do
   # config.action_cable.disable_request_forgery_protection = true
   config.hosts << /[a-z0-9]+\.lvh\.me/
   config.hosts << /lvh\.me/
+  config.hosts << /[a-z0-9]+\.be31-38-141-143-30.ngrok.io/
+  config.hosts << /be31-38-141-143-30.ngrok.io/
   config.session_store :cookie_store, key: '_hits_and_misses', domain: "lvh.me"
 end

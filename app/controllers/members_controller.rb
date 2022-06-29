@@ -58,7 +58,7 @@ class MembersController < ApplicationController
     @member.destroy
 
     respond_to do |format|
-      format.html { redirect_to members_url, notice: "Member was successfully destroyed." }
+      format.html { redirect_to team_url, notice: "Member was successfully destroyed." }
       format.json { head :no_content }
     end
   end
@@ -66,7 +66,7 @@ class MembersController < ApplicationController
   private
   # Use callbacks to share common setup or constraints between actions.
   def set_member
-    @member = Member.find(params[:id])
+    @member = Member.find(params[:id] || params[:member_id])
   end
 
   # Only allow a list of trusted parameters through.

@@ -6,8 +6,6 @@ export default class extends Controller {
   }
   connect() {
     this.endTime = Date.parse(this.endAtValue)
-    this.timeDiv = document.createElement("div");
-    this.element.appendChild(this.timeDiv);
     this.updateTimeLeft()
     this.timer = setInterval(this.updateTimeLeft.bind(this), 500)
   }
@@ -22,7 +20,7 @@ export default class extends Controller {
     const seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
     // Display the result in the element with id="demo"
-    let result = minutes + "m " + seconds + "s ";
+    let result = ("00" + minutes).slice(-2) + ":" + ("00" + seconds).slice(-2);
 
     // If the count down is finished, write some text
     if (distance < 0) {
@@ -30,6 +28,6 @@ export default class extends Controller {
       result = "Finished!";
     }
 
-    this.timeDiv.innerHTML = result
+    this.element.innerHTML = result
   }
 }

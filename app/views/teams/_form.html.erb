@@ -11,10 +11,13 @@
     </div>
   <% end %>
 
-  <%= form.label :name %>
-  <%= form.text_field :name %>
+  <div class="flex flex-col items-center space-y-3">
+    <%= form.text_field :name,
+      class:"form-control block w-full px-4 py-2 text-xl font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none",
+      placeholder:"Team name" %>
 
-  <div>
-    <%= form.submit %>
+    <div>
+      <%= form.submit class: "bg-orange-400 hover:bg-orange-500 active:bg-orange-600 p-3 text-white rounded-lg drop-shadow" %>
+    </div>
   </div>
 <% end %>

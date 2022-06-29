@@ -5,4 +5,6 @@ class Comment < ApplicationRecord
   has_many :reactions, dependent: :destroy
 
   has_rich_text :body
+
+  validates :body, presence: true
 end

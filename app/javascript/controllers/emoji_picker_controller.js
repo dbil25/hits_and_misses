@@ -2,7 +2,7 @@ import { Controller } from "@hotwired/stimulus"
 import { createPopper } from "@popperjs/core";
 
 export default class extends Controller {
-  static targets = ["button", "emojiRoot", "formSubmit", "formInput"]
+  static targets = ["button", "arrow", "emojiRoot", "formSubmit", "formInput"]
   static values = { show: Boolean }
 
   connect() {

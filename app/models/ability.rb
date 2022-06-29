@@ -36,6 +36,7 @@ class Ability
     # actions outside tenancy
     can :create, Team
     can :manage, User, itself: user
+    can :request_invite, Team
 
     # inside tenancy
     return if Apartment::Tenant.current == "public"

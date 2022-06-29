@@ -1,30 +1,44 @@
-<div class="flex items-stretch">
-  <div class="flex justify-between flex-col w-1/3">
-    <%= form_with model: Comments::Hit.new, url: comments_path do |form| %>
-      <%= form.hidden_field :meeting_id, value: @meeting.id %>
-      <%= form.hidden_field :type, value: "Comments::Hit" %>
-      <div class="field">
-        <%= form.rich_text_area :body %>
-      </div>
-      <%= form.submit %>
-    <% end %>
-    <%= turbo_frame_tag("hit_list") do %>
-      <h1>HITS</h1>
-      <%= render hits %>
-    <% end %>
+
+<div class="flex space-x-2">
+  <div class="flex flex-col w-1/2">
+    <h2 class="text-xl mb-5 font-medium text-slate-900">Hit</h2>
+
+    <div class="bg-white rounded-lg drop-shadow p-3 mb-3">
+      <%= form_with model: Comments::Hit.new, url: comments_path do |form| %>
+        <div class="flex flex-col items-center space-y-3">
+          <%= form.hidden_field :meeting_id, value: @meeting.id %>
+          <%= form.hidden_field :type, value: "Comments::Hit" %>
+          <div class="field w-full">
+            <%= form.rich_text_area :body %>
+          </div>
+          <%= form.submit "Hit 🥳", class: "text-xl inline-block px-3 py-3 bg-gradient-to-r from-emerald-300 via-emerald-500 to-cyan-600 text-white font-medium text-sm leading-snug rounded shadow-md hover:from-emerald-200 hover:via-emerald-400 hover:to-cyan-500 hover:shadow-lg active:from-emerald-100 active:via-emerald-300 active:to-cyan-400 active:shadow-lg transition duration-150 ease-in-out w-32 text-center" %>
+        </div>
+      <% end %>
+    </div>
+    <div role="list">
+      <%= turbo_frame_tag :hit_list, class:"divide-y divide-gray-200" do %>
+        <%= render hits %>
+      <% end %>
+    </div>
   </div>
-  <div class="flex justify-between flex-col w-1/3">
-    <%= form_with model: Comments::Miss.new, url: comments_path do |form| %>
-      <%= form.hidden_field :meeting_id, value: @meeting.id %>
-      <%= form.hidden_field :type, value: "Comments::Miss" %>
-      <div class="field">
-        <%= form.rich_text_area :body %>
-      </div>
-      <%= form.submit %>
-    <% end %>
-    <%= turbo_frame_tag("miss_list") do %>
-      <h1>MISSES</h1>
-      <%= render misses %>
-    <% end %>
+  <div class="flex flex-col w-1/2">
+    <h2 class="text-xl mb-5 font-medium text-slate-900">Miss</h2>
+    <div class="bg-white rounded-lg drop-shadow p-3 mb-3">
+      <%= form_with model: Comments::Miss.new, url: comments_path do |form| %>
+        <div class="flex flex-col items-center space-y-3">
+          <%= form.hidden_field :meeting_id, value: @meeting.id %>
+          <%= form.hidden_field :type, value: "Comments::Miss" %>
+          <div class="field w-full">
+            <%= form.rich_text_area :body %>
+          </div>
+          <%= form.submit "Miss 💩", class: "text-xl inline-block px-3 py-3 bg-gradient-to-r from-orange-300 via-orange-500 to-red-600 text-white font-medium text-sm leading-snug rounded shadow-md hover:from-orange-200 hover:via-orange-400 hover:to-red-500 hover:shadow-lg active:from-orange-100 active:via-orange-300 active:to-red-400 active:shadow-lg transition duration-150 ease-in-out w-32 text-center" %>
+        </div>
+      <% end %>
+    </div>
+    <div role="list">
+      <%= turbo_frame_tag :miss_list, class:"flex flex-col space-y-2" do %>
+        <%= render misses %>
+      <% end %>
+    </div>
   </div>
 </div>

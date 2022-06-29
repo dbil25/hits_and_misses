@@ -1,9 +1,16 @@
-<%= form_with(model: Team.new, url: request_invite_team_path) do |form| %>
+<div class="ml-3 my-3 col-span-1 bg-slate-50 rounded-lg w-1/3 shadow divide-y divide-gray-200">
+  <div class="w-full flex flex-col items-center justify-between p-6 space-x-6">
+    <h1 class="text-xl">Join Existing Team</h1>
+    <%= form_with(model: Team.new, url: request_invite_team_path) do |form| %>
+      <div class="flex flex-col items-center space-y-3">
+        <%= form.text_field :name,
+          class:"form-control block w-full px-4 py-2 text-xl font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none",
+          placeholder:"Existing team name" %>
 
-  <%= form.label "Join existing team" %>
-  <%= form.text_field :name %>
-
-  <div>
-    <%= form.submit %>
+        <div>
+          <%= form.submit "Request Membership", class: "bg-orange-400 hover:bg-orange-500 active:bg-orange-600 p-3 text-white rounded-lg drop-shadow" %>
+        </div>
+      </div>
+    <% end %>
   </div>
-<% end %>
+</div>

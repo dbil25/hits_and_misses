@@ -1,11 +1,28 @@
-<h1 class="text-xl"><%= @team.name %> </h1>
+<%= tag.div class:"text-orange-600 m-3" do %>
+  <%= link_to "lvh.me:3000" do %>
+    <%= heroicon("arrow-circle-left", variant: :outline, options: { class: " h-8 w-8 inline-block" } )%> Return to teams
+  <% end %>
+<% end %>
 
-<div>
-<%= render @pending_members %>
-<%= render @admins_members %>
-<%= render @members %>
+<div class="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
+  <h1 class="text-4xl mb-5 font-bold text-slate-400"><%= @team.name %> </h1>
+
+  <div class="flex space-x-2">
+    <div class="basis-1/2">
+      <h2 class="text-xl mb-5 font-medium text-slate-900">meetings</h2>
+      <%= turbo_frame_tag :new_meeting, src: new_meeting_path %>
+      <ul role="list" class=" bg-white rounded-lg drop-shadow divide-y divide-gray-200">
+          <%= render @meetings %>
+      </ul>
+    </div>
+    <div class="basis-1/2">
+      <h2 class="text-xl mb-5 font-medium text-slate-900">members</h2>
+      <ul role="list" class=" bg-white rounded-lg drop-shadow divide-y divide-gray-200">
+          <%= render @pending_members %>
+          <%= render @admins_members %>
+          <%= render @members %>
+      </ul>
+    </div>
+  </div>
 </div>
 
-<div>
-<%= turbo_frame_tag :meetings, src: meetings_path, target: "_top" %>
-</div>
