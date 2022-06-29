@@ -4,4 +4,5 @@ HealthCheck.setup do |config|
 
   # Text output upon success
   config.success = 'success'
+  config.standard_checks -= [ 'emailconf', 'email' ]
 end
