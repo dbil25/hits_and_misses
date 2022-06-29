@@ -1,0 +1,7 @@
+# /bin/sh
+
+export DATABASE_URL="postgresql://$postgres_db_user:$postgres_db_password@$postgres_db_host/$postgres_db_name?pool=5"
+
+bundle exec rails db:migrate
+
+bundle exec bin/rails server -p ${PORT:-5000} -e $RAILS_ENV

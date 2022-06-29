@@ -1,5 +1,5 @@
 <%= tag.div class:"text-orange-600 m-3" do %>
-  <%= link_to "lvh.me:3000" do %>
+  <%= link_to ENV.fetch("DOMAIN", "http://lvh.me") do %>
     <%= heroicon("arrow-circle-left", variant: :outline, options: { class: " h-8 w-8 inline-block" } )%> Return to teams
   <% end %>
 <% end %>

@@ -111,6 +111,8 @@ GEM
     ffi (1.15.5)
     globalid (1.0.0)
       activesupport (>= 5.0)
+    health_check (3.1.0)
+      railties (>= 5.0)
     heroicon (0.4.0)
       rails (>= 5.2)
     i18n (1.10.0)
@@ -238,6 +240,8 @@ GEM
       railties (>= 6.0.0)
     tzinfo (2.0.4)
       concurrent-ruby (~> 1.0)
+    tzinfo-data (1.2022.1)
+      tzinfo (>= 1.0.0)
     warden (1.2.9)
       rack (>= 2.0.9)
     web-console (4.2.0)
@@ -270,6 +274,7 @@ DEPENDENCIES
   capybara
   debug
   devise (~> 4.8)
+  health_check (~> 3.1)
   heroicon
   image_processing (~> 1.2)
   importmap-rails
