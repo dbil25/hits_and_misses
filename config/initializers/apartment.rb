@@ -109,7 +109,7 @@ end
 # Rails.application.config.middleware.use Apartment::Elevators::Generic, lambda { |request|
 #   Team.find_by(name: request.host.split('.').first)&.tenant_name
 # }
-
+Apartment::Elevators::Subdomain.excluded_subdomains = ['www', 'hackaton2022-hits-misses', 'be31-38-141-143-30']
 # Rails.application.config.middleware.use Apartment::Elevators::Domain
 Rails.application.config.middleware.use Apartment::Elevators::Subdomain
 # Rails.application.config.middleware.use Apartment::Elevators::FirstSubdomain

@@ -84,3 +84,4 @@ production:
   database: hits_and_misses_production
   username: hits_and_misses
   password: <%= ENV["HITS_AND_MISSES_DATABASE_PASSWORD"] %>
+  url: <%= ENV["DATABASE_URL"] %>
